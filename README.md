@@ -2,6 +2,38 @@
 
 A production-ready internal wallet service built with NestJS, Sequelize-TypeScript, and MySQL. This service handles wallet transactions (top-up, bonus, spend) with strong guarantees for data integrity, idempotency, and concurrency control.
 
+## ✨ Key Features
+
+- ACID-compliant wallet transactions
+- Double-entry ledger accounting
+- Idempotent API design
+- Pessimistic locking for concurrency safety
+- Multi-asset wallet architecture
+- Dockerized and deployed on Railway
+
+## 🌐 Live Deployment
+
+**Base URL:**  
+https://wallet-service-production-47a3.up.railway.app
+
+**Example:**  
+`GET https://wallet-service-production-47a3.up.railway.app/api/wallets/1`
+
+## 🚀 Quick Reviewer Guide
+
+The service is already deployed.
+
+1. Import `postmanCollection.json` into Postman.
+2. Set the collection variable: **baseUrl** = `https://wallet-service-production-47a3.up.railway.app`
+3. Test the APIs:
+
+| Method | Endpoint |
+|--------|----------|
+| GET | `/api/wallets/1` |
+| POST | `/api/wallets/topup` |
+| POST | `/api/wallets/bonus` |
+| POST | `/api/wallets/spend` |
+
 ## 🏗️ Architecture
 
 ### Technology Stack
@@ -219,7 +251,7 @@ MySQL's default isolation level (`REPEATABLE READ`) is sufficient for this use c
    ```
    
    This single script will:
-   - Create the `wallet_db` database (if it doesn't exist)
+   - Create the database (if it doesn't exist). Locally use `wallet_db`; on Railway the app uses the Railway-managed MySQL database.
    - Create all required tables (asset_types, users, wallets, transactions, ledger_entries)
    - Insert seed data (4 asset types, 2 users, user wallets, system wallets)
 
