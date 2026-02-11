@@ -5,8 +5,8 @@
 -- ============================================
 -- 1. Create Database
 -- ============================================
-CREATE DATABASE IF NOT EXISTS wallet_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE wallet_db;
+-- CREATE DATABASE IF NOT EXISTS wallet_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE wallet_db;
 
 -- ============================================
 -- 2. Create Tables

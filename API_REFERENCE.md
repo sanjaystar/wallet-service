@@ -1,6 +1,9 @@
 # Wallet Service API Reference
 
-**Base URL**: `http://localhost:3000/api`
+**Base URL**: Use `BASE_URL` when set (e.g. production), otherwise `http://localhost:3000`. All endpoints live under `/api`.
+
+- **Expression**: `(process.env.BASE_URL || 'http://localhost:3000')/api`
+- **Examples**: `http://localhost:3000/api` (local), `https://your-app.railway.app/api` (production)
 
 ---
 
@@ -12,7 +15,7 @@ For **top-up**, **bonus**, and **spend**, you can send an optional `idempotencyK
 
 ## 1. Top-Up Wallet
 
-**Endpoint**: `POST http://localhost:3000/api/wallets/topup`
+**Endpoint**: `POST {{BASE_URL || 'http://localhost:3000'}}/api/wallets/topup`
 
 **Payload**:
 ```json
@@ -38,7 +41,7 @@ For **top-up**, **bonus**, and **spend**, you can send an optional `idempotencyK
 
 ## 2. Bonus Credit
 
-**Endpoint**: `POST http://localhost:3000/api/wallets/bonus`
+**Endpoint**: `POST {{BASE_URL || 'http://localhost:3000'}}/api/wallets/bonus`
 
 **Payload**:
 ```json
@@ -64,7 +67,7 @@ For **top-up**, **bonus**, and **spend**, you can send an optional `idempotencyK
 
 ## 3. Spend Credits
 
-**Endpoint**: `POST http://localhost:3000/api/wallets/spend`
+**Endpoint**: `POST {{BASE_URL || 'http://localhost:3000'}}/api/wallets/spend`
 
 **Payload**:
 ```json
@@ -90,7 +93,7 @@ For **top-up**, **bonus**, and **spend**, you can send an optional `idempotencyK
 
 ## 4. Get All Balances
 
-**Endpoint**: `GET http://localhost:3000/api/wallets/:userId`     - `userId` (path parameter): User ID (1 or 2)
+**Endpoint**: `GET {{BASE_URL || 'http://localhost:3000'}}/api/wallets/:userId` — `userId` (path): User ID (1 or 2)
 
 **Response**:
 ```json
@@ -109,7 +112,7 @@ For **top-up**, **bonus**, and **spend**, you can send an optional `idempotencyK
 
 ## 5. Get One Balance by Asset ID
 
-**Endpoint**: `GET http://localhost:3000/api/wallets/:userId?assetId=1`
+**Endpoint**: `GET {{BASE_URL || 'http://localhost:3000'}}/api/wallets/:userId?assetId=1`
 
 **Query Parameters**:
 - `userId` (path parameter): User ID (1 or 2)

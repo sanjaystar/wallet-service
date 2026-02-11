@@ -233,8 +233,8 @@ MySQL's default isolation level (`REPEATABLE READ`) is sufficient for this use c
 ### Documentation & API Testing
 
 - **[API Reference](API_REFERENCE.md)** — Full API documentation with request/response examples for all endpoints.
-- **Postman collection** — Import `Wallet Service API.postman_collection.json` into [Postman](https://www.postman.com/) to run and modify requests against the Wallet Service API (Top-Up, Bonus, Spend, Get Balances).
-- **DB Design** — Database schema diagram: `dbDesign.png`.
+- **Postman collection** — Import `postmanCollection.json` into [Postman](https://www.postman.com/) to run and modify requests against the Wallet Service API (Top-Up, Bonus, Spend, Get Balances). Set the `baseUrl` collection variable to your API origin (e.g. `http://localhost:3000` or your production URL).
+- **DB Design** — Database schema diagram: `DB_Design.png`.
 
 ### System Wallets Initialization
 
@@ -259,7 +259,7 @@ This starts the NestJS app and MySQL 8.0 (with `seed.sql` applied). The API is a
 
 ### Base URL: `http://localhost:3000/api`
 
-For full request/response details and multi-asset support, see **[API_REFERENCE.md](API_REFERENCE.md)**. Use the **Postman collection** (`Wallet Service API.postman_collection.json`) to call the API from Postman.
+For full request/response details and multi-asset support, see **[API_REFERENCE.md](API_REFERENCE.md)**. Use the **Postman collection** (`postmanCollection.json`) to call the API from Postman.
 
 ## 🧪 Testing
 
@@ -307,5 +307,5 @@ src/
 └── main.ts                    # Application entry point
 ```
 
-**Project root:** `API_REFERENCE.md`, `Wallet Service API.postman_collection.json`, `requirement.md`, `seed.sql`, `env.template`, `dbDesign.png`
+**Project root:** `API_REFERENCE.md`, `postmanCollection.json`, `seed.sql`, `env.template`, `DB_Design.png`
 

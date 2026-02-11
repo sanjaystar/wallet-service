@@ -17,7 +17,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userId\": \"1\",              // Use existing users (1, 2)\n  \"amount\": 100,              // Amount to top-up (must be positive)\n  \"idempotencyKey\": \"topup_credits15464\", // Optional. Same key on retry = same result\n  \"assetTypeId\": 1            // Asset type ID: 1=Credits, 2=Gold Coins, 3=Diamonds, 4=Loyalty Points\n}",
+          "raw": "{\n  \"userId\": \"2\",              // Use existing users (1, 2)\n  \"amount\": 100,              // Amount to top-up (must be positive)\n  \"idempotencyKey\": \"topup_credits15464\", // Optional. Same key on retry = same result\n  \"assetTypeId\": 1            // Asset type ID: 1=Credits, 2=Gold Coins, 3=Diamonds, 4=Loyalty Points\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -25,12 +25,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/api/wallets/topup",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/wallets/topup",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "3000",
           "path": [
             "api",
             "wallets",
@@ -50,7 +48,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userId\": \"1\",              // Use existing users (1, 2)\n  \"amount\": 50,               // Amount to give as bonus (must be positive)\n  \"idempotencyKey\": \"bonus_credits12312\", // Same key on retry = same result\n  \"assetTypeId\": 1            // Asset type ID: 1=Credits, 2=Gold Coins, 3=Diamonds, 4=Loyalty Points\n}",
+          "raw": "{\n  \"userId\": \"2\",              // Use existing users (1, 2)\n  \"amount\": 50,               // Amount to give as bonus (must be positive)\n  \"idempotencyKey\": \"bonus_credits12312\", // Same key on retry = same result\n  \"assetTypeId\": 1            // Asset type ID: 1=Credits, 2=Gold Coins, 3=Diamonds, 4=Loyalty Points\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -58,12 +56,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/api/wallets/bonus",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/wallets/bonus",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "3000",
           "path": [
             "api",
             "wallets",
@@ -80,7 +76,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userId\": \"1\",              // Use existing users (1, 2)\n  \"amount\": 30,               // Amount to spend (must be positive, must have sufficient balance)\n  \"idempotencyKey\": \"spend_credits12312\", //Same key on retry = same result\n  \"assetTypeId\": 1            // Asset type ID: 1=Credits, 2=Gold Coins, 3=Diamonds, 4=Loyalty Points\n}",
+          "raw": "{\n  \"userId\": \"2\",              // Use existing users (1, 2)\n  \"amount\": 30,               // Amount to spend (must be positive, must have sufficient balance)\n  \"idempotencyKey\": \"spend_credits12312\", //Same key on retry = same result\n  \"assetTypeId\": 1            // Asset type ID: 1=Credits, 2=Gold Coins, 3=Diamonds, 4=Loyalty Points\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -88,12 +84,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/api/wallets/spend",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/wallets/spend",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "3000",
           "path": [
             "api",
             "wallets",
@@ -109,12 +103,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/api/wallets/1",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/wallets/1",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "3000",
           "path": [
             "api",
             "wallets",
@@ -130,12 +122,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/api/wallets/1?assetId=1",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/wallets/1?assetId=1",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "3000",
           "path": [
             "api",
             "wallets",
@@ -150,6 +140,36 @@
         }
       },
       "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""  
     }
   ]
 }
