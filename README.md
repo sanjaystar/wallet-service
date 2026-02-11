@@ -240,6 +240,21 @@ MySQL's default isolation level (`REPEATABLE READ`) is sufficient for this use c
 
 System wallets (TREASURY, REWARDS, REVENUE) are automatically created on application startup via `AppModule.onModuleInit()`. They can also be pre-seeded using `seed.sql`.
 
+## Run with Docker
+
+**Requirements:**
+
+- Docker
+- Docker Compose
+
+Start the app and database:
+
+```bash
+docker-compose up -d --build
+```
+
+This starts the NestJS app and MySQL 8.0 (with `seed.sql` applied). The API is available at `http://localhost:3000`.
+
 ## 📡 API Endpoints
 
 ### Base URL: `http://localhost:3000/api`

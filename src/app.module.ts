@@ -1,32 +1,31 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './models/user.model';
-import { Wallet } from './models/wallet.model';
-import { Transaction } from './models/transaction.model';
-import { LedgerEntry } from './models/ledger-entry.model';
-import { AssetType } from './models/asset-type.model';
 import { WalletModule } from './wallet/wallet.module';
 import { WalletService } from './wallet/wallet.service';
 import { AppController } from './app.controller';
+
+function getDatabaseUri(): string {
+  if (process.env.DATABASE_URL) return process.env.DATABASE_URL;
+  const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
+  if (DB_HOST && DB_USER != null && DB_PASSWORD != null && DB_NAME) {
+    const port = DB_PORT ?? '3306';
+    return `mysql://${encodeURIComponent(DB_USER)}:${encodeURIComponent(DB_PASSWORD)}@${DB_HOST}:${port}/${DB_NAME}`;
+  }
+  throw new Error('Database config: set DATABASE_URL (e.g. Railway) or DB_HOST, DB_USER, DB_PASSWORD, DB_NAME');
+}
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
     }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT || '3306'),
-      username: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || 'password',
-      database: process.env.DB_NAME || 'wallet_db',
+      uri: getDatabaseUri(),
       autoLoadModels: true,
-      synchronize: false, // Set to false in production, use migrations
-      logging: process.env.NODE_ENV === 'development' ? console.log : false,
-      models: [User, Wallet, Transaction, LedgerEntry, AssetType],
+      synchronize: false,
+      logging: false,
     }),
     WalletModule,
   ],
@@ -36,7 +35,6 @@ export class AppModule implements OnModuleInit {
   constructor(private walletService: WalletService) {}
 
   async onModuleInit() {
-    // Initialize system wallets on startup
     try {
       await this.walletService.initializeSystemWallets();
       console.log('System wallets initialized successfully');
@@ -45,3 +43,4 @@ export class AppModule implements OnModuleInit {
     }
   }
 }
+
